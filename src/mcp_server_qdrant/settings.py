@@ -47,6 +47,19 @@ class EmbeddingProviderSettings(BaseSettings):
         validation_alias="EMBEDDING_MODEL",
     )
 
+    openai_base_url: str = Field(
+        default="https://api.openai.com/v1",
+        validation_alias="OPENAI_BASE_URL",
+    )
+    openai_api_key: str = Field(
+        default="",
+        validation_alias="OPENAI_API_KEY",
+    )
+    vector_size: int = Field(
+        default=1536,
+        validation_alias="EMBEDDING_VECTOR_SIZE",
+    )
+
 
 class FilterableField(BaseModel):
     name: str = Field(description="The name of the field payload field to filter on")
