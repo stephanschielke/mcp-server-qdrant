@@ -65,12 +65,11 @@ class OpenAIEmbeddingProvider(EmbeddingProvider):
         """
         Vector name used inside the Qdrant collection.
 
-        Uses the model name (last path component, lower-cased) prefixed with
-        "openai-" so it is distinct from FastEmbed vectors in the same instance.
-        Example: "text-embedding-3-small" → "openai-text-embedding-3-small"
+        Returns the empty string so Qdrant uses the default unnamed vector,
+        matching the behaviour of FastEmbedProvider and keeping collections
+        compatible across provider switches.
         """
-        tail = self._model_name.split("/")[-1].lower()
-        return f"openai-{tail}"
+        return ""
 
     def get_vector_size(self) -> int:
         return self._vector_size
